@@ -13,13 +13,28 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user }) {
-      console.log(user, 'userr')
       const { email } = user
       try {
         await fauna.query(
+          q.If(
+            q.Not(
+              q.Exists(
+                q.Match(
+                  q.Index('user_by_email'), //criado o index no faunadb para fazer a busca pelo email
+                  q.Casefold(email) 
+                )
+              )
+            ),
           q.Create(
             q.Collection('users'),
             { data: { email } }
+          ),
+          q.Get(
+            q.Match(
+              q.Index('user_by_email'),
+              q.Casefold(email) 
+            )
+          )
           )
         )
         
