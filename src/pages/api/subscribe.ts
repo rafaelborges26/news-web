@@ -26,8 +26,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         //fazer um cadastro do usuario dentro do stripe
         const session = await getSession({ req }) as SessionProps
 
-        console.log(session, 'session test')
-
         const user = await fauna.query<UserProps>(
             q.Get(
                 q.Match(

@@ -8,8 +8,6 @@ export function SinginButton() {
 
     const {data: session} = useSession()
 
-    console.log(session, 'user')
-
     return (
         session ? (
         <button type="button" className={styles.SignInButton} onClick={() => signOut()}>

@@ -13,7 +13,6 @@ interface HomeProps {
 }
 
 export default function Home({ product } : HomeProps) {
-  console.log(product)
   return (
     <>
       <Head>Home | ig.news</Head>
@@ -46,8 +45,6 @@ export const getStaticProps: GetStaticProps = async () => {
      }
      ).format(price.unit_amount / 100)
   }
-
-  console.log(price.product, 'mostra o produto')
 
   return {
     props: {
